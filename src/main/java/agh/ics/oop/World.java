@@ -14,16 +14,5 @@ public class World {
         //System.out.println(((SimulationEngine) engine).getAnimals().get(1));
         System.out.println("Stop");
     }
-    //odpowiedz na pytanie: mozna stworzyc liste zwierzat i przy tworzeniu nowego sprawdzac po kolei zwierzeta czy maja taka pozycje
-    public static void run(MoveDirection[] directions){
-        for(MoveDirection e : directions){
-            String message = switch(e){
-                case FORWARD -> "Zwierzak idzie do przodu";
-                case BACKWARD -> "Zwierzak idzie do tyłu";
-                case LEFT -> "Zwierzak skręca w lewo";
-                case RIGHT -> "Zwierzak skręca w prawo";
-            };
-            System.out.println(message);
-        }
-    }
+
 }
