@@ -3,17 +3,15 @@ package agh.ics.oop;
 public class World {
     public static void main(String[] args) {
         System.out.println("Start");
-        run(new OptionsParser().parse(args));
 
 
-        Animal animal = new Animal();
-        System.out.println(animal);
-        animal.move(MoveDirection.RIGHT);
-        animal.move(MoveDirection.FORWARD);
-        animal.move(MoveDirection.FORWARD);
-        animal.move(MoveDirection.FORWARD);
-        System.out.println(animal);
-
+        MoveDirection[] directions = new OptionsParser().parse(args);
+        IWorldMap map = new RectangularMap(10, 5);
+        Vector2d[] positions = { new Vector2d(2,2), new Vector2d(3,4) };
+        IEngine engine = new SimulationEngine(directions, map, positions);
+        engine.run();
+        //System.out.println(((SimulationEngine) engine).getAnimals().get(0));
+        //System.out.println(((SimulationEngine) engine).getAnimals().get(1));
         System.out.println("Stop");
     }
     //odpowiedz na pytanie: mozna stworzyc liste zwierzat i przy tworzeniu nowego sprawdzac po kolei zwierzeta czy maja taka pozycje

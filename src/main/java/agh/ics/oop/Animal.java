@@ -4,15 +4,25 @@ package agh.ics.oop;
 public class Animal {
     private MapDirection direction;
     private Vector2d position;
+    private IWorldMap map;
 
-
+    public Animal(IWorldMap map, Vector2d initialPosition){
+        this.direction = MapDirection.NORTH;
+        this.position = initialPosition;
+        this.map = map;
+    }
+    public Animal(IWorldMap map){
+        this.direction = MapDirection.NORTH;
+        this.position = new Vector2d(2,2);
+        this.map = map;
+    }
     public Animal(){
         this.direction = MapDirection.NORTH;
         this.position = new Vector2d(2,2);
     }
 
     public String toString(){
-        return ("position: " + this.position.toString() + ", direction: " + this.direction.toString());
+        return (this.position.toString() + " " + this.direction.toString());
     }
 
     public MapDirection getDirection() {
@@ -43,7 +53,7 @@ public class Animal {
             case LEFT -> this.direction = this.direction.previous();
         }
         if (moved){
-            if (newPos.follows(new Vector2d(0,0)) && newPos.precedes(new Vector2d(4,4))){
+            if (map.canMoveTo(newPos)){
                 this.position = newPos;
             }
         }
