@@ -1,5 +1,8 @@
 package agh.ics.oop;
 
+import agh.ics.oop.gui.Gui;
+
+import java.awt.*;
 import java.util.ArrayList;
 
 public class SimulationEngine implements IEngine{
@@ -18,6 +21,8 @@ public class SimulationEngine implements IEngine{
     }
 
     public void run(){
+        Gui gui = new Gui(10, 5, this.animals);
+        gui.run();
         for (Vector2d position: positions){
             Animal animal = new Animal(this.map, position);
             if(this.map.place(animal)){
@@ -26,8 +31,17 @@ public class SimulationEngine implements IEngine{
         }
         for(int i = 0; i < moves.length; i++){
             this.animals.get(i % animals.size()).move(moves[i]);
+            gui.run();
+            //gui.drawAnimals(this.animals);
+            try {
+                Thread.sleep(600);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             //System.out.println(i % animals.size() + " " + animals.get(i % animals.size()));
         }
+        gui.run();
+
     }
 
     //metoda stworzona aby ulatwic robienie testow, nie jestem pewny czy to dobre wyjscie

@@ -16,6 +16,10 @@ public class Animal {
         this.position = new Vector2d(2,2);
         this.map = map;
     }
+    //konstruktor bezparametrowy nie ma teraz sensu, ponieważ każde zwierzę musi mieć pokazaną mapę na którą sie może poruszać,
+    //dodatkowo możemy "zagnieżdżać konstruktory", dzięki czemu konstruktor z 3 argumentami może korzystać z konstruktora z 2 itd.
+    //nie zrobiłem tak w tym rozwiązaniu, ponieważ nie byłem o to proszony
+
     public Animal(){
         this.direction = MapDirection.NORTH;
         this.position = new Vector2d(2,2);
