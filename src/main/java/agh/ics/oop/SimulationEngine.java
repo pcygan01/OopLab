@@ -42,6 +42,8 @@ public class SimulationEngine implements IEngine{
         }
         gui.run();
 
+        System.out.println("koniec");
+
     }
 
     //metoda stworzona aby ulatwic robienie testow, nie jestem pewny czy to dobre wyjscie
