@@ -61,6 +61,6 @@ public class RectangularMap implements IWorldMap{
         return this.upperRight;
     }
     public String toString(){
-        return new MapVisualizer(this).draw(this.lowerLeft, this.upperRight);
+        return super.toString();
     }
 }

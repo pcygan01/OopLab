@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import static java.lang.Math.*;
 
-public class GrassField implements IWorldMap{
+public class GrassField extends AbstractWorldMap{
     private final int n;
     private ArrayList<Animal> animals = new ArrayList<Animal>();
     private ArrayList<Grass> grasses = new ArrayList<Grass>();
@@ -93,7 +93,7 @@ public class GrassField implements IWorldMap{
         return new Vector2d(x, y);
     }
     public String toString(){
-        return new MapVisualizer(this).draw(getLowerLeft(), getUpperRight());
+        return super.toString();
     }
 
 
