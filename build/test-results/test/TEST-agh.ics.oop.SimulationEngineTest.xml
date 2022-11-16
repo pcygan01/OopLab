@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="agh.ics.oop.SimulationEngineTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-11-01T21:41:02" hostname="DESKTOP-QC7KJG8" time="0.019">
-  <properties/>
-  <testcase name="SimulationEngineTest1()" classname="agh.ics.oop.SimulationEngineTest" time="0.018"/>
-  <testcase name="SimulationEngineTest2()" classname="agh.ics.oop.SimulationEngineTest" time="0.001"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

@@ -26,7 +26,7 @@ public class DrawAnimals extends JPanel {
         super.paintComponent(g);
 
         for(Animal a: animals){
-            String s = a.getDirection().toString();
+            String s = a.toString();
             int x = a.getPosition().x;
             int y = a.getPosition().y;
             g.drawString(s, originX + x * cellSize + cellSize/2, originY + cellSize * (rows - y) - cellSize/2);

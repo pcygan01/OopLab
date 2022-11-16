@@ -26,7 +26,7 @@ public class Animal {
     }
 
     public String toString(){
-        return (this.position.toString() + " " + this.direction.toString());
+        return (this.direction.toString());
     }
 
     public MapDirection getDirection() {
