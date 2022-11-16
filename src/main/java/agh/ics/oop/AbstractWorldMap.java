@@ -15,7 +15,34 @@ public abstract class AbstractWorldMap implements IWorldMap{
         return !(objectAt(position) instanceof Animal);
     }
 
+    @Override
+    public boolean place(Animal animal){
+        if (canMoveTo(animal.getPosition())){
+            animals.add(animal);
+            return true;
+        }
+        return false;
+    }
 
+    @Override
+    public boolean isOccupied(Vector2d position){
+        for(Animal a: animals){
+            if (a.isAt(position)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public Object objectAt(Vector2d position){
+        for(Animal a: animals){
+            if (a.isAt(position)){
+                return a;
+            }
+        }
+        return null;
+    }
 
     public abstract Vector2d getLowerLeft();
     public abstract Vector2d getUpperRight();

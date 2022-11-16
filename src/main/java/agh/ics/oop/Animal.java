@@ -1,29 +1,20 @@
 package agh.ics.oop;
 
 
-public class Animal {
+public class Animal extends AbstractWorldMapElement{
     private MapDirection direction;
-    private Vector2d position;
     private IWorldMap map;
 
     public Animal(IWorldMap map, Vector2d initialPosition){
+        super(initialPosition);
         this.direction = MapDirection.NORTH;
-        this.position = initialPosition;
         this.map = map;
     }
-    public Animal(IWorldMap map){
-        this.direction = MapDirection.NORTH;
-        this.position = new Vector2d(2,2);
-        this.map = map;
-    }
+
     //konstruktor bezparametrowy nie ma teraz sensu, ponieważ każde zwierzę musi mieć pokazaną mapę na którą sie może poruszać,
     //dodatkowo możemy "zagnieżdżać konstruktory", dzięki czemu konstruktor z 3 argumentami może korzystać z konstruktora z 2 itd.
     //nie zrobiłem tak w tym rozwiązaniu, ponieważ nie byłem o to proszony
 
-    public Animal(){
-        this.direction = MapDirection.NORTH;
-        this.position = new Vector2d(2,2);
-    }
 
     public String toString(){
         return (this.direction.toString());
@@ -33,9 +24,6 @@ public class Animal {
         return direction;
     }
 
-    public Vector2d getPosition() {
-        return position;
-    }
 
     public boolean isAt(Vector2d position){
         return this.position.equals(position);

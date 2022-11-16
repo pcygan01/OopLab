@@ -53,7 +53,7 @@ public class GrassFieldTest {
     void objectAtTest(){
         assertEquals(a1, map.objectAt(new Vector2d(4,7)));
         assertEquals(a2, map.objectAt(new Vector2d(8,2)));
-        assertEquals(null, map.objectAt(new Vector2d(5,5)));
+        assertTrue((map.objectAt(new Vector2d(1, 1)) == null || map.objectAt(new Vector2d(1, 1)) instanceof Grass));
 
     }
 }
