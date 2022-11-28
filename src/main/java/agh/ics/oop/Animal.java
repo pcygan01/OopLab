@@ -1,14 +1,19 @@
 package agh.ics.oop;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Animal extends AbstractWorldMapElement{
     private MapDirection direction;
     private IWorldMap map;
+    private List<IPositionChangeObserver> observers;
 
     public Animal(IWorldMap map, Vector2d initialPosition){
         super(initialPosition);
         this.direction = MapDirection.NORTH;
         this.map = map;
+        this.observers = new ArrayList<>();
     }
 
     //konstruktor bezparametrowy nie ma teraz sensu, ponieważ każde zwierzę musi mieć pokazaną mapę na którą sie może poruszać,
@@ -25,8 +30,22 @@ public class Animal extends AbstractWorldMapElement{
     }
 
 
+
     public boolean isAt(Vector2d position){
         return this.position.equals(position);
+    }
+
+    public void addObserver(IPositionChangeObserver observer){
+        observers.add(observer);
+    }
+    public void removeObserver(IPositionChangeObserver observer){
+        observers.remove(observer);
+    }
+
+    public void positionChanged(Vector2d newPosition){
+        for(IPositionChangeObserver observer: observers){
+            observer.positionChanged(this.position, newPosition);
+        }
     }
 
     public void move(MoveDirection direction){
@@ -45,7 +64,8 @@ public class Animal extends AbstractWorldMapElement{
             case LEFT -> this.direction = this.direction.previous();
         }
         if (moved){
-            if (map.canMoveTo(newPos)){
+            if (this.map.canMoveTo(newPos)){
+                positionChanged(newPos);
                 this.position = newPos;
             }
         }

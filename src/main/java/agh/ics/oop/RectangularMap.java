@@ -5,13 +5,11 @@ import java.util.ArrayList;
 public class RectangularMap extends AbstractWorldMap{
 
 
-    private ArrayList<Animal> animals;
-
     private final Vector2d lowerLeft;
     private final Vector2d upperRight;
 
-    public RectangularMap(int width, int height){;
-        this.animals = new ArrayList<>();
+    public RectangularMap(int width, int height){
+        super();
         this.lowerLeft = new Vector2d(0,0);
         this.upperRight = new Vector2d(width-1, height-1);
     }
