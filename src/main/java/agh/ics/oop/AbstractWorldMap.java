@@ -14,6 +14,7 @@ public abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObse
     }
 
     public boolean canMoveTo(Vector2d position){
+
         return !(objectAt(position) instanceof Animal);
     }
 
@@ -25,7 +26,9 @@ public abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObse
             animal.addObserver(this);
             return true;
         }
-        return false;
+        else{
+            throw new IllegalArgumentException("there is already an animal on " + pos);
+        }
     }
 
     @Override

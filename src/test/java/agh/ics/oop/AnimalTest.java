@@ -8,7 +8,8 @@ public class AnimalTest {
 
     @Test
     public void directionTest(){
-        Animal dog = new Animal();
+        IWorldMap map = new GrassField(10);
+        Animal dog = new Animal(map, new Vector2d(2,2));
         assertEquals(MapDirection.NORTH, dog.getDirection());
         for (int i = 0; i < 15; i++){
             dog.move(MoveDirection.LEFT);
@@ -23,7 +24,8 @@ public class AnimalTest {
 
     @Test
     public void positionTest(){
-        Animal dog = new Animal();
+        IWorldMap map = new GrassField(10);
+        Animal dog = new Animal(map, new Vector2d(2,2));
         assertEquals(new Vector2d(2,2), dog.getPosition());
         dog.move(MoveDirection.FORWARD);
         dog.move(MoveDirection.FORWARD);
@@ -45,7 +47,8 @@ public class AnimalTest {
 
     @Test
     public void borderTest(){
-        Animal cat = new Animal();
+        IWorldMap map = new RectangularMap(5,5);
+        Animal cat = new Animal(map, new Vector2d(2,2));
         for (int i = 0; i < 10; i++){
             cat.move(MoveDirection.FORWARD);
         }

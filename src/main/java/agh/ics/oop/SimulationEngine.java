@@ -28,7 +28,11 @@ public class SimulationEngine implements IEngine{
             if(this.map.place(animal)){
                 this.animals.add(animal);
             }
+            else{
+
+            }
         }
+        System.out.println(map);
         for(int i = 0; i < moves.length; i++){
             this.animals.get(i % animals.size()).move(moves[i]);
             //gui.run();
