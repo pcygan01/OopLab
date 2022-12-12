@@ -1,8 +1,5 @@
 package agh.ics.oop;
 
-import agh.ics.oop.gui.Gui;
-
-import java.awt.*;
 import java.util.ArrayList;
 
 public class SimulationEngine implements IEngine{
@@ -12,11 +9,11 @@ public class SimulationEngine implements IEngine{
     private ArrayList<Animal> animals;
 
 
-    public SimulationEngine(MoveDirection[] moves, IWorldMap map, Vector2d[] positions){
-        this.moves = moves;
+    public SimulationEngine(String[] args, IWorldMap map, Vector2d[] positions){
         this.map = map;
         this.positions = positions;
         this.animals = new ArrayList<>();
+        this.moves = new OptionsParser().parse(args);
 
     }
 
