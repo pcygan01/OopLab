@@ -17,9 +17,12 @@ import static java.lang.Math.*;
 public class GrassField extends AbstractWorldMap{
     private final int n;
     private Map<Vector2d, Grass> grasses;
+    private MapBoundary mapBoundaries;
+
 
     public GrassField(int n){
         this.n = n;
+        this.mapBoundaries = new MapBoundary();
         this.grasses = new HashMap<>();
         for(int i = 0; i < n; i++){
             while (true)
@@ -28,6 +31,14 @@ public class GrassField extends AbstractWorldMap{
         }
     }
 
+    @Override
+    public boolean place(Animal animal){
+        if (super.place(animal)){
+            mapBoundaries.addElement(animal.getPosition());
+            return true;
+        }
+        return false; //nie musimy jeszcze raz tego samego wyjatku pisac
+    }
 
     @Override
     public boolean canMoveTo(Vector2d position) {
@@ -39,6 +50,8 @@ public class GrassField extends AbstractWorldMap{
                 if (spawnGrass())
                     break;
             grasses.remove(position);
+            mapBoundaries.removeElement(position);
+            //usuwam pozycje trawy zeby zaraz dodac pozycje zwierze
         }
         return true;
     }
@@ -69,32 +82,17 @@ public class GrassField extends AbstractWorldMap{
         return null;
     }
 
+    public void positionChanged(Vector2d oldPosition, Vector2d newPosition){
+        super.positionChanged(oldPosition, newPosition);
+        mapBoundaries.positionChanged(oldPosition, newPosition);
+    }
+
     public Vector2d getLowerLeft(){
-        int x = Integer.MAX_VALUE;
-        int y = Integer.MAX_VALUE;
-        for(Vector2d pos: animals.keySet()){
-            x = min(pos.x, x);
-            y = min(pos.y, y);
-        }
-        for(Vector2d pos: grasses.keySet()){
-            x = min(pos.x, x);
-            y = min(pos.y, y);
-        }
-        return new Vector2d(x, y);
+        return mapBoundaries.getLowerLeft();
     }
 
     public Vector2d getUpperRight(){
-        int x = Integer.MIN_VALUE;
-        int y = Integer.MIN_VALUE;
-        for(Vector2d pos: animals.keySet()){
-            x = max(pos.x, x);
-            y = max(pos.y, y);
-        }
-        for(Vector2d pos: grasses.keySet()){
-            x = max(pos.x, x);
-            y = max(pos.y, y);
-        }
-        return new Vector2d(x, y);
+        return mapBoundaries.getUpperRight();
     }
 
     public boolean spawnGrass(){
@@ -102,6 +100,7 @@ public class GrassField extends AbstractWorldMap{
         Vector2d pos = new Vector2d(random.nextInt((int)sqrt(this.n*10)), random.nextInt((int)sqrt(this.n*10)));
         if (objectAt(pos) == null){
             this.grasses.put(pos, new Grass(pos));
+            mapBoundaries.addElement(pos);
             return true;
         }
         return false;

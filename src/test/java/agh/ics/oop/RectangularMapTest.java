@@ -1,5 +1,6 @@
 package agh.ics.oop;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -33,12 +34,32 @@ public class RectangularMapTest {
         assertFalse(map.canMoveTo(new Vector2d(-4,4)));
     }
 
+    //TODO: this test
     @Test
     void placeTest(){
         assertTrue(map.place(new Animal(map, new Vector2d(5,8))));
-        assertFalse(map.place(new Animal(map, new Vector2d(5,8))));
-        assertFalse(map.place(new Animal(map, new Vector2d(5,11))));
-        assertFalse(map.place(new Animal(map, new Vector2d(-2,9))));
+        try{
+            map.place(new Animal(map, new Vector2d(5, 8)));
+            Assertions.fail("there should be caught exception");
+        }
+        catch (IllegalArgumentException ex){
+            Assertions.assertTrue(true, "an exception was caught");
+        }
+        try{
+            assertFalse(map.place(new Animal(map, new Vector2d(5,11))));
+            Assertions.fail("there should be caught exception");
+        }
+        catch (IllegalArgumentException ex){
+            Assertions.assertTrue(true, "an exception was caught");
+        }
+        try{
+            assertFalse(map.place(new Animal(map, new Vector2d(-2,9))));
+            Assertions.fail("there should be caught exception");
+        }
+        catch (IllegalArgumentException ex){
+            Assertions.assertTrue(true, "an exception was caught");
+        }
+
     }
 
     @Test

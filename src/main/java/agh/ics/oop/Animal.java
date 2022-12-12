@@ -46,6 +46,7 @@ public class Animal extends AbstractWorldMapElement{
         for(IPositionChangeObserver observer: observers){
             observer.positionChanged(this.position, newPosition);
         }
+        this.position = newPosition;
     }
 
     public void move(MoveDirection direction){
@@ -66,7 +67,6 @@ public class Animal extends AbstractWorldMapElement{
         if (moved){
             if (this.map.canMoveTo(newPos)){
                 positionChanged(newPos);
-                this.position = newPos;
             }
         }
     }

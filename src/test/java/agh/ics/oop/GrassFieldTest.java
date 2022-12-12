@@ -1,5 +1,6 @@
 package agh.ics.oop;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,8 +37,20 @@ public class GrassFieldTest {
     @Test
     void placeTest(){
         assertTrue(map.place(new Animal(map, new Vector2d(5,8))));
-        assertFalse(map.place(new Animal(map, new Vector2d(5,8))));
-        assertFalse(map.place(new Animal(map, new Vector2d(8,2))));
+        try{
+            assertFalse(map.place(new Animal(map, new Vector2d(5,8))));
+            Assertions.fail("there should be caught excpetion");
+        }
+        catch (IllegalArgumentException ex){
+            Assertions.assertTrue(true, "an exception was caught");
+        }
+        try{
+            assertFalse(map.place(new Animal(map, new Vector2d(8,2))));
+            Assertions.fail("there should be caught exception");
+        }
+        catch (IllegalArgumentException ex){
+            Assertions.assertTrue(true, "an exception was caught");
+        }
         assertTrue(map.place(new Animal(map, new Vector2d(-2,9))));
     }
 

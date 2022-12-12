@@ -1,5 +1,6 @@
 package agh.ics.oop;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -77,11 +78,23 @@ public class AnimalTest {
         String[] args1 = {"f", "backward", "right", "r", "back", "nothing", "b", "left"};
         MoveDirection[] output1 = {MoveDirection.FORWARD, MoveDirection.BACKWARD, MoveDirection.RIGHT,
                 MoveDirection.RIGHT, MoveDirection.BACKWARD, MoveDirection.LEFT};
-        assertArrayEquals(output1, parser.parse(args1));
+        try{
+            assertArrayEquals(output1, parser.parse(args1));
+            Assertions.fail("there should be an exception");
+        }
+        catch(IllegalArgumentException ex){
+            Assertions.assertTrue(true, "an exception was caught");
+        }
 
         String[] args2 = {"1", "2", "3", "4", "4", "b"};
         MoveDirection[] output2 = {MoveDirection.BACKWARD};
-        assertArrayEquals(output2, parser.parse(args2));
+        try{
+            assertArrayEquals(output2, parser.parse(args2));
+            Assertions.fail("there should be an exception");
+        }
+        catch(IllegalArgumentException ex){
+            Assertions.assertTrue(true, "an exception was caught");
+        }
 
         String[] args3 = {"f", "r", "b", "l", "forward", "right", "backward", "left"};
         MoveDirection[] output3 = {MoveDirection.FORWARD, MoveDirection.RIGHT, MoveDirection.BACKWARD,

@@ -20,7 +20,6 @@ public class World {
         } catch (IllegalArgumentException ex){
             System.out.println(ex);
         }
-        //TODO: zaktualizuj testy metod place oraz klasy optionsparser
 
 
 //f b r l f f r r f f f f f f f f
